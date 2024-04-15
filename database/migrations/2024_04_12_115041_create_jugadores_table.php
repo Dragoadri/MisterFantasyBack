@@ -14,8 +14,15 @@ class CreateJugadoresTable extends Migration
     public function up()
     {
         Schema::create('jugadores', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id('md_id');
+            $table->string('name');
+            $table->string('nickname');
+            $table->string('md_name');
+            $table->string('position');
+            $table->integer('position_id');
+            $table->string('slug');
+            $table->unsignedInteger('team_id');
+            $table->foreign('team_id')->references('team_id')->on('equipor');
         });
     }
 

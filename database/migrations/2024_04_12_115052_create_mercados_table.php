@@ -13,9 +13,12 @@ class CreateMercadosTable extends Migration
      */
     public function up()
     {
-        Schema::create('mercados', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('mercado', function (Blueprint $table) {
+            $table->id('mercado_id');
+            $table->unsignedInteger('md_player_id');
+            $table->date('date');
+            $table->bigIncrements('value');
+            $table->foreign('md_player_id')->references('md_id')->on('jugadores');
         });
     }
 
