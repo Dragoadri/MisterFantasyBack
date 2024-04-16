@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\JugadoresController;
 use App\Http\Controllers\MercadoController;
+use App\Http\Controllers\JornadaController;
+use App\Http\Controllers\EquipoFController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,3 +30,7 @@ Route::get('/mercado', [MercadoController::class, 'getAll']);
 
 //Route::get('/mercado/{md_id}', [MercadoController::class, 'get']);
 Route::get('/mercado/{md_id}', [MercadoController::class, 'get']);
+
+Route::get('/jornadas', [JornadaController::class, 'getAll']);
+
+Route::get('/equipoF', [EquipoFController::class, 'getAll']);
