@@ -11,7 +11,7 @@ class Estadistica extends Model
 
     //la tabla es la siguiente:
     /**
-     * CREATE TABLE {bbdd_database_name}.estadisticas (
+     * CREATE TABLE {bbdd_database_name}.estadistica (
      * est_id INT AUTO_INCREMENT NOT NULL,
      * md_id INT UNSIGNED NOT NULL,
      * jornada_id INT UNSIGNED NOT NULL,
@@ -43,7 +43,7 @@ class Estadistica extends Model
      * );
      */
 
-    protected $table = 'estadisticas';
+    protected $table = 'estadistica';
     protected $primaryKey = 'est_id';
     protected $fillable = [
         'md_id',
