@@ -10,7 +10,9 @@ class valorequipos extends Model
     use HasFactory;
 
     protected $table = 'valorequipos';
-    protected $primaryKey = 'valor_id';
+    protected $primaryKey = 'id';
+    public $timestamps = false;
+
     //campos
     protected $fillable = [
         'user_id',

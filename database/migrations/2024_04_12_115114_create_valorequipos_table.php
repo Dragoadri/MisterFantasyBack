@@ -14,8 +14,17 @@ class CreateValorequiposTable extends Migration
     public function up()
     {
         Schema::create('valorequipos', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id('id');
+            $table->integer('user_id');
+            $table->integer('num_jugadores');
+            $table->integer('valor_equipo');
+            $table->integer('puntos_totales');
+            $table->integer('jornada_id');
+            $table->foreign('user_id')->references('user_id')->on('User');
+            $table->foreign('jornada_id')->references('jornada_id')->on('Jornada');
+
+
+
         });
     }
 
