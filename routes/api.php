@@ -56,7 +56,4 @@ Route::get('/estadisticas', [EstadisticasController::class, 'getAll']);
 Route::get('/estadisticas/{est_id}', [EstadisticasController::class, 'get']);
 Route::get('/estadisticas/jugador/{md_id}', [EstadisticasController::class, 'getEstadisticasByJugador']);
 Route::get('/estadisticas/jornada/{jornada_id}', [EstadisticasController::class, 'getEstadisticasByJornada']);
-Route::get('/estadisticas/equipo/{equipo_id}', [EstadisticasController::class, 'getEstadisticasByEquipo']);
-Route::get('/estadisticas/temporada/{temporada}', [EstadisticasController::class, 'getEstadisticasByTemporada']);
-
 

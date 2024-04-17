@@ -74,25 +74,13 @@ class EstadisticasController extends Controller
 
 
 
-    public function getEstadisticasByTemporada(Request $request, $temporada) {
-        $estadisticas = Estadistica::where('temporada', $temporada)->get();
-        return json_encode($estadisticas);
-    }
+
 
     public function getEstadisticasByJornada(Request $request, $jornada)
     {
-        $estadisticas = Estadistica::where('jornada', $jornada)->get();
+        $estadisticas = Estadistica::where('jornada_id', $jornada)->get();
         return json_encode($estadisticas);
 
-    }
-
-    public function getEstadisticasByEquipo(Request $request, $equipo_id)
-    {
-        $estadisticas = Estadistica::where('equipo_id', $equipo_id)->get();
-        return json_encode($estadisticas);}
-
-   
+    }}
 
 
-
-    }
