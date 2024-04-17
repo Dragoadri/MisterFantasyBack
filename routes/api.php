@@ -9,6 +9,7 @@ use App\Http\Controllers\parti;
 use App\Http\Controllers\PartidosController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ValorEquiposController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,3 +58,5 @@ Route::get('/estadisticas/{est_id}', [EstadisticasController::class, 'get']);
 Route::get('/estadisticas/jugador/{md_id}', [EstadisticasController::class, 'getEstadisticasByJugador']);
 Route::get('/estadisticas/jornada/{jornada_id}', [EstadisticasController::class, 'getEstadisticasByJornada']);
 
+//Valor equipos
+Route::get('/valorequipos', [ValorEquiposController::class, 'getAll']);
