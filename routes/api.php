@@ -4,6 +4,7 @@ use App\Http\Controllers\JugadoresController;
 use App\Http\Controllers\MercadoController;
 use App\Http\Controllers\JornadaController;
 use App\Http\Controllers\EquipoFController;
+use App\Http\Controllers\PartidosController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -36,3 +37,10 @@ Route::get('/jornadas/{jor_id}', [JornadaController::class, 'get']);
 
 //Route::get('/equipoF', [EquipoFController::class, 'getAll']);
 Route::get('/equipoF/{equi_id}', [EquipoFController::class, 'get']);
+
+Route::get('/partidos', [PartidosController::class, 'getAll']);
+
+
+Route::get('/partidos/{part_id}', [PartidosController::class, 'get']);
+
+Route::get('/estadisticas', [EstadisticasController::class, 'getAll']);
