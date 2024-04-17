@@ -1,18 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
-class PartidosController
+
+use App\Models\Partido;
+use Illuminate\Http\Request;
+
+class PartidosController extends Controller
 {
     public function getAll(Request $request)
     {
-        $partidos = Partidos::get();
+        $partidos = Partido::get();
         return json_encode($partidos);
     }
 
     public function get(Request $request, $partido_id) {
-        $partidos = Partidos::where('partido_id', $partido_id)->get();
+        $partidos = Partido::where('partido_id', $partido_id)->get();
         return json_encode($partidos);
     }
-    //
-
 }

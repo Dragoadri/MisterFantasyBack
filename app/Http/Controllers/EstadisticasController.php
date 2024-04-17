@@ -1,10 +1,11 @@
 <?php
 
+namespace App\Http\Controllers;
+
 use App\Models\Estadistica;
 use Illuminate\Http\Request;
 
-
-class EstadisticasController
+class EstadisticasController extends Controller
 {
     public function getAll(Request $request)
     {
@@ -16,6 +17,4 @@ class EstadisticasController
         $estadisticas = Estadistica::where('estadisticas_id', $estadisticas_id)->get();
         return json_encode($estadisticas);
     }
-    //
-
 }

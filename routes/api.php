@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\EstadisticasController;
 use App\Http\Controllers\JugadoresController;
 use App\Http\Controllers\MercadoController;
 use App\Http\Controllers\JornadaController;
 use App\Http\Controllers\EquipoFController;
+use App\Http\Controllers\parti;
 use App\Http\Controllers\PartidosController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
