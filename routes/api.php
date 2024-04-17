@@ -46,3 +46,5 @@ Route::get('/partidos', [PartidosController::class, 'getAll']);
 Route::get('/partidos/{part_id}', [PartidosController::class, 'get']);
 
 Route::get('/estadisticas', [EstadisticasController::class, 'getAll']);
+
+Route::get('/estadisticas/{est_id}', [EstadisticasController::class, 'get']);
