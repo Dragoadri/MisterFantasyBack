@@ -40,11 +40,23 @@ Route::get('/jornadas/{jor_id}', [JornadaController::class, 'get']);
 //Route::get('/equipoF', [EquipoFController::class, 'getAll']);
 Route::get('/equipoF/{equi_id}', [EquipoFController::class, 'get']);
 
+//PARTIDOS
+
 Route::get('/partidos', [PartidosController::class, 'getAll']);
-
-
 Route::get('/partidos/{part_id}', [PartidosController::class, 'get']);
+Route::get('/partidos/equipo/{equipo_id}', [PartidosController::class, 'getPartidosByEquipo']);
+Route::get('/partidos/temporada/{temporada}', [PartidosController::class, 'getPartidosByTemporada']);
+Route::get('/partidos/jornada/{jornada}', [PartidosController::class, 'getPartidosByJornada']);
+Route::get('/partidos/resultado/{resultado}', [PartidosController::class, 'getPartidosByResultado']);
+Route::get('/partidos/resultado_local/{resultado_local}', [PartidosController::class, 'getPartidosByResultadoLocal']);
+Route::get('/partidos/resultado_visitante/{resultado_visitante}', [PartidosController::class, 'getPartidosByResultadoVisitante']);
 
+//ESTADISTICAS
 Route::get('/estadisticas', [EstadisticasController::class, 'getAll']);
-
 Route::get('/estadisticas/{est_id}', [EstadisticasController::class, 'get']);
+Route::get('/estadisticas/jugador/{md_id}', [EstadisticasController::class, 'getEstadisticasByJugador']);
+Route::get('/estadisticas/jornada/{jornada_id}', [EstadisticasController::class, 'getEstadisticasByJornada']);
+Route::get('/estadisticas/equipo/{equipo_id}', [EstadisticasController::class, 'getEstadisticasByEquipo']);
+Route::get('/estadisticas/temporada/{temporada}', [EstadisticasController::class, 'getEstadisticasByTemporada']);
+
+

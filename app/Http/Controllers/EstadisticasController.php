@@ -43,6 +43,16 @@ use Illuminate\Http\Request;
 
 class EstadisticasController extends Controller
 {
+
+    /**
+     * Route::get('/estadisticas', [EstadisticasController::class, 'getAll']);
+     * Route::get('/estadisticas/{est_id}', [EstadisticasController::class, 'get']);
+     * Route::get('/estadisticas/jugador/{md_id}', [EstadisticasController::class, 'getEstadisticasByJugador']);
+     * Route::get('/estadisticas/jornada/{jornada_id}', [EstadisticasController::class, 'getEstadisticasByJornada']);
+     * Route::get('/estadisticas/equipo/{equipo_id}', [EstadisticasController::class, 'getEstadisticasByEquipo']);
+     * Route::get('/estadisticas/temporada/{temporada}', [EstadisticasController::class, 'getEstadisticasByTemporada']);
+     */
+
     public function getAll(Request $request)
     {
         $estadisticas = Estadistica::get();
@@ -53,4 +63,36 @@ class EstadisticasController extends Controller
         $estadisticas = Estadistica::where('est_id', $est_id)->get();
         return json_encode($estadisticas);
     }
-}
+
+
+
+    public function getEstadisticasByJugador(Request $request, $md_id) {
+        $estadisticas = Estadistica::where('md_id', $md_id)->get();
+        return json_encode($estadisticas);
+
+        }
+
+
+
+    public function getEstadisticasByTemporada(Request $request, $temporada) {
+        $estadisticas = Estadistica::where('temporada', $temporada)->get();
+        return json_encode($estadisticas);
+    }
+
+    public function getEstadisticasByJornada(Request $request, $jornada)
+    {
+        $estadisticas = Estadistica::where('jornada', $jornada)->get();
+        return json_encode($estadisticas);
+
+    }
+
+    public function getEstadisticasByEquipo(Request $request, $equipo_id)
+    {
+        $estadisticas = Estadistica::where('equipo_id', $equipo_id)->get();
+        return json_encode($estadisticas);}
+
+   
+
+
+
+    }
