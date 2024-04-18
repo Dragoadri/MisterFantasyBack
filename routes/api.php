@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ValorEquiposController;
 use App\Http\Controllers\equiporController;
+use App\Http\Controllers\MercadoUsuarioController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -63,3 +65,6 @@ Route::get('/estadisticas/jornada/{jornada_id}', [EstadisticasController::class,
 
 //Valor equipos
 Route::get('/valorequipos', [ValorEquiposController::class, 'getAll']);
+
+//mercado Usuario
+Route::get('/mercadousuario',[MercadoUsuarioController::class, 'getAll']);
