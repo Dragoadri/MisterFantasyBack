@@ -42,7 +42,7 @@ Route::get('/jornadas/{jor_id}', [JornadaController::class, 'get']);
 //Route::get('/equipoF', [EquipoFController::class, 'getAll']);
 Route::get('/equipoF/{equi_id}', [EquipoFController::class, 'get']);
 
-Route::get('/equipor', [equiporController::class, 'getEquipor']);
+Route::get('/equipor', [equiporController::class, 'getAll']);
 
 //PARTIDOS
 
