@@ -10,6 +10,7 @@ use App\Http\Controllers\PartidosController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ValorEquiposController;
+use App\Http\Controllers\equiporController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,8 @@ Route::get('/jornadas/{jor_id}', [JornadaController::class, 'get']);
 
 //Route::get('/equipoF', [EquipoFController::class, 'getAll']);
 Route::get('/equipoF/{equi_id}', [EquipoFController::class, 'get']);
+
+Route::get('/equipor', [equiporController::class, 'getEquipor']);
 
 //PARTIDOS
 
