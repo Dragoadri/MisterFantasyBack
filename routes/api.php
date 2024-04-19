@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ValorEquiposController;
 use App\Http\Controllers\equiporController;
 use App\Http\Controllers\MercadoUsuarioController;
+use App\Http\Controllers\usuarioController;
 
 
 /*
@@ -45,6 +46,8 @@ Route::get('/jornadas/{jor_id}', [JornadaController::class, 'get']);
 Route::get('/equipoF/{equi_id}', [EquipoFController::class, 'get']);
 
 Route::get('/equipor', [equiporController::class, 'getAll']);
+
+Route::get('/usuario', [usuarioController::class, 'getAll']);
 
 //PARTIDOS
 
