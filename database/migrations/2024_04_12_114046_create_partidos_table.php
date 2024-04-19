@@ -35,6 +35,8 @@ class CreatePartidosTable extends Migration
          * FOREIGN KEY (id_equipo_visitante) REFERENCES {bbdd_database_name}.equipor(team_id)
          * );
          */
+        Schema::dropIfExists('partidos');
+
         Schema::create('partidos', function (Blueprint $table) {
             $table->id();
             $table->string('temporada');
@@ -47,8 +49,8 @@ class CreatePartidosTable extends Migration
             $table->integer('resultado_visitante');
             $table->unsignedBigInteger('id_equipo_local');
             $table->unsignedBigInteger('id_equipo_visitante');
-            $table->foreign('id_equipo_local')->references('team_id')->on('equipos');
-            $table->foreign('id_equipo_visitante')->references('team_id')->on('equipos');
+            $table->foreign('id_equipo_local')->references('id')->on('equipos');
+            $table->foreign('id_equipo_visitante')->references('id')->on('equipos');
             $table->timestamps();
         });
 

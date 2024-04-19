@@ -6,35 +6,36 @@ use App\Models\Estadistica;
 use Illuminate\Http\Request;
 //la tabla es la siguiente:
 /**
- * CREATE TABLE {bbdd_database_name}.estadisticas (
- * est_id INT AUTO_INCREMENT NOT NULL,
+ * CREATE TABLE {bbdd_database_name}.estadistica (
+ * id INT NOT NULL AUTO_INCREMENT,
  * md_id INT UNSIGNED NOT NULL,
- * jornada_id INT UNSIGNED NOT NULL,
- * puntos INT,
- * total_mins_played INT,
- * total_penalty_save INT,
- * total_saves INT,
- * total_effective_clearance INT,
- * total_goals_conceded INT,
- * total_yellow_card INT,
- * total_ball_recovery INT,
- * total_poss_lost_all INT,
- * score_marca_points INT,
- * total_goals INT,
- * total_goal_assist INT,
- * total_offtarget_att_assist INT,
- * total_pen_area_entries INT,
- * total_penalty_won INT,
- * total_total_scoring_att INT,
- * total_won_contest INT,
- * total_penalty_failed INT,
- * total_penalty_conceded INT,
- * total_second_yellow_card INT,
- * total_own_goals INT,
- * total_red_card INT,
- * PRIMARY KEY(est_id),
- * FOREIGN KEY (md_id) REFERENCES {bbdd_database_name}.jugadores(md_id),
- * FOREIGN KEY (jornada_id) REFERENCES {bbdd_database_name}.jornadas(jornada_id)
+ * jornada_id INT NOT NULL,
+ * puntos INT DEFAULT NULL,
+ * total_mins_played INT DEFAULT NULL,
+ * total_penalty_save INT DEFAULT NULL,
+ * total_saves INT DEFAULT NULL,
+ * total_effective_clearance INT DEFAULT NULL,
+ * total_goals_conceded INT DEFAULT NULL,
+ * total_yellow_card INT DEFAULT NULL,
+ * total_ball_recovery INT DEFAULT NULL,
+ * total_poss_lost_all INT DEFAULT NULL,
+ * score_marca_points INT DEFAULT NULL,
+ * total_goals INT DEFAULT NULL,
+ * total_goal_assist INT DEFAULT NULL,
+ * total_offtarget_att_assist INT DEFAULT NULL,
+ * total_pen_area_entries INT DEFAULT NULL,
+ * total_penalty_won INT DEFAULT NULL,
+ * total_total_scoring_att INT DEFAULT NULL,
+ * total_won_contest INT DEFAULT NULL,
+ * total_penalty_failed INT DEFAULT NULL,
+ * total_penalty_conceded INT DEFAULT NULL,
+ * total_second_yellow_card INT DEFAULT NULL,
+ * total_own_goals INT DEFAULT NULL,
+ * total_red_card INT DEFAULT NULL,
+ * PRIMARY KEY(id),
+ * FOREIGN KEY (md_id) REFERENCES {bbdd_database_name}.jugadores(id),
+ * FOREIGN KEY (jornada_id) REFERENCES {bbdd_database_name}.jornadas(id)
+ *
  * );
  */
 
@@ -59,28 +60,28 @@ class EstadisticasController extends Controller
         return json_encode($estadisticas);
     }
 
-    public function get(Request $request, $est_id) {
-        $estadisticas = Estadistica::where('est_id', $est_id)->get();
+    public function get(Request $request, $est_id)
+    {
+        $estadisticas = Estadistica::where('id', $est_id)->get();
+        return json_encode($estadisticas);
+    }
+
+
+    public function getEstadisticasByJugador(Request $request, $md_id)
+    {
+        $estadisticas = Estadistica::where('md_id', $md_id)->get();
         return json_encode($estadisticas);
     }
 
 
 
-    public function getEstadisticasByJugador(Request $request, $md_id) {
-        $estadisticas = Estadistica::where('md_id', $md_id)->get();
-        return json_encode($estadisticas);
-
-        }
 
 
-
-
-
-    public function getEstadisticasByJornada(Request $request, $jornada)
+    public function getEstadisticasByJornada(Request $request, $jornada_id)
     {
-        $estadisticas = Estadistica::where('jornada_id', $jornada)->get();
+        $estadisticas = Estadistica::where('jornada_id', $jornada_id)->get();
         return json_encode($estadisticas);
-
-    }}
+    }
+}
 
 
