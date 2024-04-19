@@ -63,6 +63,7 @@ Route::get('/partidos/resultado_visitante/{resultado_visitante}', [PartidosContr
 Route::get('/estadisticas', [EstadisticasController::class, 'getAll']);
 Route::get('/estadisticas/{est_id}', [EstadisticasController::class, 'get']);
 Route::get('/estadisticas/jugador/{md_id}', [EstadisticasController::class, 'getEstadisticasByJugador']);
+Route::get('/estadisticas/top-jugadores/{temporada}', [EstadisticasController::class, 'getTopJugadoresTemporada']);
 Route::get('/estadisticas/jornada/{jornada_id}', [EstadisticasController::class, 'getEstadisticasByJornada']);
 
 //Valor equipos

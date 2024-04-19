@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Estadistica;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 //la tabla es la siguiente:
 /**
  * CREATE TABLE {bbdd_database_name}.estadistica (
@@ -81,6 +83,23 @@ class EstadisticasController extends Controller
     {
         $estadisticas = Estadistica::where('jornada_id', $jornada_id)->get();
         return json_encode($estadisticas);
+    }
+
+    public function getTopJugadoresTemporada(Request $request, $temporada)
+    {
+        $jornadaIds = DB::table('jornadas')
+            ->where('temporada', $temporada)
+            ->pluck('id');
+
+        $topJugadores = Estadistica::whereIn('estadistica.jornada_id', $jornadaIds)
+            ->join('jugadores', 'jugadores.id', '=', 'estadistica.md_id')
+            ->select('estadistica.md_id', DB::raw('SUM(estadistica.puntos) as total_puntos'), 'jugadores.name')
+            ->groupBy('estadistica.md_id', 'jugadores.name')
+            ->orderBy('total_puntos', 'desc')
+            ->take(10)
+            ->get();
+
+        return json_encode($topJugadores);
     }
 }
 
