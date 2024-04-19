@@ -12,7 +12,7 @@ class mercado extends Model
     // Especificamos el nombre de la tabla si no sigue la convención de nombres de Laravel.
     protected $table = 'mercado';
     // Especificamos la clave primaria si no es 'id'.
-    protected $primaryKey = 'mercado_id';
+//    protected $primaryKey = 'mercado_id';
     // Laravel asume que cada tabla tiene timestamps (created_at y updated_at),
     // si no es así, deshabilitamos esta funcionalidad
     public $timestamps = false;
@@ -26,6 +26,7 @@ class mercado extends Model
 
     public function jugador()
     {
-        return $this->belongsTo(jugadores::class, 'md_player_id', 'md_id');
+        return $this->belongsTo(jugadores::class, 'md_player_id', 'id');
     }
+
 }

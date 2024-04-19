@@ -14,7 +14,7 @@ class CreateMercadosTable extends Migration
     public function up()
     {
         Schema::create('mercado', function (Blueprint $table) {
-            $table->id('mercado_id');
+            $table->id('id');
             $table->unsignedInteger('md_player_id');
             $table->date('date');
             $table->bigIncrements('value');
