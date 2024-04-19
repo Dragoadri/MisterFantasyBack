@@ -16,6 +16,9 @@ class CreateJornadasTable extends Migration
         Schema::create('jornadas', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->text('temporada');
+            $table->integer('jornada');
+            $table->year('fecha');
         });
     }
 

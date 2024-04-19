@@ -11,5 +11,11 @@ class Jornada extends Model
 
     protected $table = 'jornadas';
 
-    protected $primaryKey = 'jornada_id';
+    protected $primaryKey = 'id';
+
+    protected $fillable = [
+        'temporada',
+        'jornada',
+        'fecha'
+    ];
 }

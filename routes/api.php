@@ -39,7 +39,7 @@ Route::get('/mercado', [MercadoController::class, 'getAll']);
 //Route::get('/mercado/{md_id}', [MercadoController::class, 'get']);
 Route::get('/mercado/{md_id}', [MercadoController::class, 'get']);
 
-//Route::get('/jornadas', [JornadaController::class, 'getAll']);
+Route::get('/jornadas', [JornadaController::class, 'getAll']);
 Route::get('/jornadas/{jor_id}', [JornadaController::class, 'get']);
 
 //Route::get('/equipoF', [EquipoFController::class, 'getAll']);

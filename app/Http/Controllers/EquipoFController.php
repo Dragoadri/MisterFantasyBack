@@ -14,7 +14,7 @@ class EquipoFController extends Controller
     }
 
     public function get(Request $request, $equipo_id) {
-        $equipo = EquipoF::where('equipo_id', $equipo_id)->get();
+        $equipo = EquipoF::where('id', $equipo_id)->get();
         return json_encode($equipo);
     }
     //

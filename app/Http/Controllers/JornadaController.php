@@ -14,7 +14,7 @@ class JornadaController extends Controller
     }
 
     public function get(Request $request, $jornada_id) {
-        $jornada = Jornada::where('jornada_id', $jornada_id)->get();
+        $jornada = Jornada::where('id', $jornada_id)->get();
         return json_encode($jornada);
     }
     //
