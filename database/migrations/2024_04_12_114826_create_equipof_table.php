@@ -13,9 +13,15 @@ class CreateEquipoFSTable extends Migration
      */
     public function up()
     {
-        Schema::create('equipo_f_s', function (Blueprint $table) {
+        Schema::create('equipof', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->integer('md_id');
+            $table->integer('user_id');
+            $table->integer('jornada_id');
+            $table->foreign('md_id')->references('md_id')->on('jugadores');
+            $table->foreign('user_id')->references('user_id')->on('User');
+            $table->foreign('jornada_id')->references('user_id')->on('Jornada');
         });
     }
 
@@ -26,6 +32,6 @@ class CreateEquipoFSTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('equipo_f_s');
+        Schema::dropIfExists('equipof');
     }
 }

@@ -70,3 +70,6 @@ Route::get('/valorequipos', [ValorEquiposController::class, 'getAll']);
 
 //mercado Usuario
 Route::get('/mercadousuario',[MercadoUsuarioController::class, 'getAll']);
+
+Route::get('/mercadousuario/{id}', [MercadoUsuarioController::class, 'get']);
+Route::get('/mercadousuario/{user_id}',[MercadoUsuarioController::class, 'getMercadoByUsuario']);

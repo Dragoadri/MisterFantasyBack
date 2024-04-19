@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJornadasTable extends Migration
+class CreateUsuariosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateJornadasTable extends Migration
      */
     public function up()
     {
-        Schema::create('jornadas', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->string('temporada');
-            $table->integer('jornada');
-            $table->year('fecha');
+        Schema::create('usuarios', function (Blueprint $table) {
+            $table->id('user_id');
+            $table->string('nickname');
+            $table->string('correo');
+            $table->string('rol');
         });
     }
 
@@ -29,6 +28,6 @@ class CreateJornadasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jornadas');
+        Schema::dropIfExists('usuarios');
     }
 }

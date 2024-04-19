@@ -12,5 +12,14 @@ class MercadoUsuarioController extends Controller
         $mUsuario = mercadousuario::get();
         return json_encode($mUsuario, JSON_UNESCAPED_UNICODE);
     }
+    public function get(Request $request, $id)
+    {
+        $mUsuario = mercadousuario::where('id', $id)->get();
+        return json_encode($mUsuario, JSON_UNESCAPED_UNICODE);
+    }
+    public function getMercadoByUsuario(Request $request, $user_id){
+        $mUsuario = mercadousuario::where('user_id', $user_id)->get();
+        return json_encode($mUsuario, JSON_UNESCAPED_UNICODE);
+    }
     //
 }

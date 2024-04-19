@@ -16,7 +16,7 @@ class CreateEstadisticasTable extends Migration
         //La tabla en sql es la siguiente:
         /**
          * CREATE TABLE {bbdd_database_name}.estadistica (
-         * est_id INT NOT NULL AUTO_INCREMENT,
+         * id INT NOT NULL AUTO_INCREMENT,
          * md_id INT UNSIGNED NOT NULL,
          * jornada_id INT NOT NULL,
          * puntos INT DEFAULT NULL,
@@ -41,12 +41,15 @@ class CreateEstadisticasTable extends Migration
          * total_second_yellow_card INT DEFAULT NULL,
          * total_own_goals INT DEFAULT NULL,
          * total_red_card INT DEFAULT NULL,
-         * PRIMARY KEY(est_id),
-         * FOREIGN KEY (md_id) REFERENCES {bbdd_database_name}.jugadores(md_id),
-         * FOREIGN KEY (jornada_id) REFERENCES {bbdd_database_name}.jornadas(jornada_id)
+         * PRIMARY KEY(id),
+         * FOREIGN KEY (md_id) REFERENCES {bbdd_database_name}.jugadores(id),
+         * FOREIGN KEY (jornada_id) REFERENCES {bbdd_database_name}.jornadas(id)
          *
          * );
          */
+
+        Schema::dropIfExists('estadisticas');
+
         Schema::create('estadisticas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('md_id');
@@ -73,8 +76,8 @@ class CreateEstadisticasTable extends Migration
             $table->integer('total_second_yellow_card')->nullable();
             $table->integer('total_own_goals')->nullable();
             $table->integer('total_red_card')->nullable();
-            $table->foreign('md_id')->references('md_id')->on('jugadores');
-            $table->foreign('jornada_id')->references('jornada_id')->on('jornadas');
+            $table->foreign('md_id')->references('id')->on('jugadores');
+            $table->foreign('jornada_id')->references('id')->on('jornadas');
             $table->timestamps();
         });
 
