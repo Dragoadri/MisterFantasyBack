@@ -13,4 +13,9 @@ class ValorEquiposController extends Controller
        // return json_encode("Hola");
     }
     //
+    public function get(Request $request, $id)
+    {
+        $valorequipos = valorequipos::where('id', $id)->get();
+        return json_encode($valorequipos, JSON_UNESCAPED_UNICODE);
+    }
 }
