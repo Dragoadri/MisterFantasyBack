@@ -13,13 +13,15 @@ class CreateJornadasTable extends Migration
      */
     public function up()
     {
-        Schema::create('jornadas', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->string('temporada');
-            $table->integer('jornada');
-            $table->year('fecha');
-        });
+        if (!Schema::hasTable('jornadas')) {
+            Schema::create('jornadas', function (Blueprint $table) {
+                $table->id();
+                $table->timestamps();
+                $table->string('temporada');
+                $table->integer('jornada');
+                $table->year('fecha');
+            });
+        }
     }
 
     /**

@@ -37,22 +37,24 @@ class CreatePartidosTable extends Migration
          */
 //        Schema::dropIfExists('partidos');
 
-        Schema::create('partidos', function (Blueprint $table) {
-            $table->id();
-            $table->string('temporada');
-            $table->year('fecha');
-            $table->integer('jornada');
-            $table->string('equipo_local');
-            $table->string('equipo_visitante');
-            $table->string('resultado');
-            $table->integer('resultado_local');
-            $table->integer('resultado_visitante');
-            $table->unsignedBigInteger('id_equipo_local');
-            $table->unsignedBigInteger('id_equipo_visitante');
-            $table->foreign('id_equipo_local')->references('id')->on('equipors');
-            $table->foreign('id_equipo_visitante')->references('id')->on('equipors');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('partidos')) {
+            Schema::create('partidos', function (Blueprint $table) {
+                $table->id();
+                $table->string('temporada');
+                $table->year('fecha');
+                $table->integer('jornada');
+                $table->string('equipo_local');
+                $table->string('equipo_visitante');
+                $table->string('resultado');
+                $table->integer('resultado_local');
+                $table->integer('resultado_visitante');
+                $table->unsignedBigInteger('id_equipo_local');
+                $table->unsignedBigInteger('id_equipo_visitante');
+                $table->foreign('id_equipo_local')->references('id')->on('equipors');
+                $table->foreign('id_equipo_visitante')->references('id')->on('equipors');
+                $table->timestamps();
+            });
+        }
 
 
     }

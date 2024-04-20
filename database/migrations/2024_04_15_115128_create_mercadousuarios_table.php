@@ -13,18 +13,17 @@ class CreateMercadousuariosTable extends Migration
      */
     public function up()
     {
-        Schema::create('mercadousuarios', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->unsignedBigInteger('md_id');
-            $table->year('fecha');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('md_id')->references('id')->on('jugadores');
-            $table->foreign('user_id')->references('id')->on('usuarios');
-
-
-
-        });
+        if (!Schema::hasTable('mercadousuarios')) {
+            Schema::create('mercadousuarios', function (Blueprint $table) {
+                $table->id();
+                $table->timestamps();
+                $table->unsignedBigInteger('md_id');
+                $table->year('fecha');
+                $table->unsignedBigInteger('user_id');
+                $table->foreign('md_id')->references('id')->on('jugadores');
+                $table->foreign('user_id')->references('id')->on('usuarios');
+            });
+        }
     }
 
     /**

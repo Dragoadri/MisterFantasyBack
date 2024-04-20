@@ -49,37 +49,38 @@ class CreateEstadisticasTable extends Migration
          */
 
 //        Schema::dropIfExists('estadisticas');
-
-        Schema::create('estadisticas', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('md_id');
-            $table->unsignedBigInteger('jornada_id');
-            $table->integer('puntos')->nullable();
-            $table->integer('total_mins_played')->nullable();
-            $table->integer('total_penalty_save')->nullable();
-            $table->integer('total_saves')->nullable();
-            $table->integer('total_effective_clearance')->nullable();
-            $table->integer('total_goals_conceded')->nullable();
-            $table->integer('total_yellow_card')->nullable();
-            $table->integer('total_ball_recovery')->nullable();
-            $table->integer('total_poss_lost_all')->nullable();
-            $table->integer('score_marca_points')->nullable();
-            $table->integer('total_goals')->nullable();
-            $table->integer('total_goal_assist')->nullable();
-            $table->integer('total_offtarget_att_assist')->nullable();
-            $table->integer('total_pen_area_entries')->nullable();
-            $table->integer('total_penalty_won')->nullable();
-            $table->integer('total_total_scoring_att')->nullable();
-            $table->integer('total_won_contest')->nullable();
-            $table->integer('total_penalty_failed')->nullable();
-            $table->integer('total_penalty_conceded')->nullable();
-            $table->integer('total_second_yellow_card')->nullable();
-            $table->integer('total_own_goals')->nullable();
-            $table->integer('total_red_card')->nullable();
-            $table->foreign('md_id')->references('id')->on('jugadores');
-            $table->foreign('jornada_id')->references('id')->on('jornadas');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('estadisticas')) {
+            Schema::create('estadisticas', function (Blueprint $table) {
+                $table->id();
+                $table->unsignedBigInteger('md_id');
+                $table->unsignedBigInteger('jornada_id');
+                $table->integer('puntos')->nullable();
+                $table->integer('total_mins_played')->nullable();
+                $table->integer('total_penalty_save')->nullable();
+                $table->integer('total_saves')->nullable();
+                $table->integer('total_effective_clearance')->nullable();
+                $table->integer('total_goals_conceded')->nullable();
+                $table->integer('total_yellow_card')->nullable();
+                $table->integer('total_ball_recovery')->nullable();
+                $table->integer('total_poss_lost_all')->nullable();
+                $table->integer('score_marca_points')->nullable();
+                $table->integer('total_goals')->nullable();
+                $table->integer('total_goal_assist')->nullable();
+                $table->integer('total_offtarget_att_assist')->nullable();
+                $table->integer('total_pen_area_entries')->nullable();
+                $table->integer('total_penalty_won')->nullable();
+                $table->integer('total_total_scoring_att')->nullable();
+                $table->integer('total_won_contest')->nullable();
+                $table->integer('total_penalty_failed')->nullable();
+                $table->integer('total_penalty_conceded')->nullable();
+                $table->integer('total_second_yellow_card')->nullable();
+                $table->integer('total_own_goals')->nullable();
+                $table->integer('total_red_card')->nullable();
+                $table->foreign('md_id')->references('id')->on('jugadores');
+                $table->foreign('jornada_id')->references('id')->on('jornadas');
+                $table->timestamps();
+            });
+        }
 
     }
 

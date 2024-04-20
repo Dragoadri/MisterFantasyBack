@@ -13,16 +13,18 @@ class CreateEquipoFTable extends Migration
      */
     public function up()
     {
-        Schema::create('equipof', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->unsignedBigInteger('md_id');
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('jornada_id');
-            $table->foreign('md_id')->references('id')->on('jugadores');
-            $table->foreign('user_id')->references('id')->on('usuarios');
-            $table->foreign('jornada_id')->references('id')->on('jornadas');
-        });
+        if (!Schema::hasTable('equipof')) {
+            Schema::create('equipof', function (Blueprint $table) {
+                $table->id();
+                $table->timestamps();
+                $table->unsignedBigInteger('md_id');
+                $table->unsignedBigInteger('user_id');
+                $table->unsignedBigInteger('jornada_id');
+                $table->foreign('md_id')->references('id')->on('jugadores');
+                $table->foreign('user_id')->references('id')->on('usuarios');
+                $table->foreign('jornada_id')->references('id')->on('jornadas');
+            });
+        }
     }
 
     /**
