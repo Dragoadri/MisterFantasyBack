@@ -16,11 +16,11 @@ class CreateMercadousuariosTable extends Migration
         Schema::create('mercadousuarios', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('md_id');
+            $table->unsignedBigInteger('md_id');
             $table->year('fecha');
-            $table->integer('user_id');
-            $table->foreign('md_id')->references('md_id')->on('jugadores');
-            $table->foreign('user_id')->references('user_id')->on('User');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('md_id')->references('id')->on('jugadores');
+            $table->foreign('user_id')->references('id')->on('usuarios');
 
 
 

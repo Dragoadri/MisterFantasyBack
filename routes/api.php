@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ValorEquiposController;
 use App\Http\Controllers\equiporController;
 use App\Http\Controllers\MercadoUsuarioController;
+use App\Http\Controllers\usuarioController;
 
 
 /*
@@ -40,7 +41,7 @@ Route::get('/mercado/{md_id}', [MercadoController::class, 'get']);
 
 Route::get('/mercadotop', [MercadoController::class, 'getTopValues']);
 
-//Route::get('/jornadas', [JornadaController::class, 'getAll']);
+Route::get('/jornadas/temporada/{temporada}', [JornadaController::class, 'getByTemporada']);
 Route::get('/jornadas/{jor_id}', [JornadaController::class, 'get']);
 
 //Route::get('/equipoF', [EquipoFController::class, 'getAll']);
@@ -70,8 +71,12 @@ Route::get('/estadisticas/jornada/{jornada_id}', [EstadisticasController::class,
 //Valor equipos
 Route::get('/valorequipos', [ValorEquiposController::class, 'getAll']);
 
+Route::get('/valorequipos/jornada-id/{jornada_id}', [ValorEquiposController::class, 'getAllWithUsername']);
+
 //mercado Usuario
 Route::get('/mercadousuario',[MercadoUsuarioController::class, 'getAll']);
 
 Route::get('/mercadousuario/{id}', [MercadoUsuarioController::class, 'get']);
 Route::get('/mercadousuario/{user_id}',[MercadoUsuarioController::class, 'getMercadoByUsuario']);
+
+Route::get('/usuarios',[usuarioController::class, 'getAll']);

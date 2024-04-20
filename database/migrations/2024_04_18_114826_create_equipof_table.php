@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEquipoFSTable extends Migration
+class CreateEquipoFTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,12 +16,12 @@ class CreateEquipoFSTable extends Migration
         Schema::create('equipof', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('md_id');
-            $table->integer('user_id');
-            $table->integer('jornada_id');
-            $table->foreign('md_id')->references('md_id')->on('jugadores');
-            $table->foreign('user_id')->references('user_id')->on('User');
-            $table->foreign('jornada_id')->references('user_id')->on('Jornada');
+            $table->unsignedBigInteger('md_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('jornada_id');
+            $table->foreign('md_id')->references('id')->on('jugadores');
+            $table->foreign('user_id')->references('id')->on('usuarios');
+            $table->foreign('jornada_id')->references('id')->on('jornadas');
         });
     }
 

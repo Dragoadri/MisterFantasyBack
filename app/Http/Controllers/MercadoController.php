@@ -33,9 +33,9 @@ class MercadoController extends Controller
             ->orderBy('value', 'desc')
             ->take(10)
             ->with(['jugador' => function($query) {
-                $query->select();  // Asegúrate de que 'id' aquí sea la clave primaria en 'jugadores'
+                $query->select();
             }])
-            ->get();  // Especifica los campos que necesitas de Mercado
+            ->get();
 
 
         return json_encode($topPlayers);

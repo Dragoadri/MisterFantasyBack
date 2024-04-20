@@ -15,13 +15,13 @@ class CreateValorequiposTable extends Migration
     {
         Schema::create('valorequipos', function (Blueprint $table) {
             $table->id('id');
-            $table->integer('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->integer('num_jugadores');
             $table->integer('valor_equipo');
             $table->integer('puntos_totales');
-            $table->integer('jornada_id');
-            $table->foreign('user_id')->references('user_id')->on('User');
-            $table->foreign('jornada_id')->references('jornada_id')->on('Jornada');
+            $table->unsignedBigInteger('jornada_id');
+            $table->foreign('user_id')->references('id')->on('usuarios');
+            $table->foreign('jornada_id')->references('id')->on('jornadas');
 
 
 

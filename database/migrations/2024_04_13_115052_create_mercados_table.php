@@ -15,10 +15,10 @@ class CreateMercadosTable extends Migration
     {
         Schema::create('mercado', function (Blueprint $table) {
             $table->id('id');
-            $table->unsignedInteger('md_player_id');
+            $table->unsignedBigInteger('md_player_id');
             $table->date('date');
-            $table->bigIncrements('value');
-            $table->foreign('md_player_id')->references('md_id')->on('jugadores');
+            $table->bigInteger('value');
+            $table->foreign('md_player_id')->references('id')->on('jugadores');
         });
     }
 
