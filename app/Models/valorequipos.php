@@ -22,14 +22,14 @@ class valorequipos extends Model
         'jornada_id'
 
     ];
-   
+
     //userid refs user, jornadaid refs jornada si es 1 belongs to o has many 1 jornada varios vals equipo 1 user varios val equipos
     public function usuario(){
-        return $this->belongsTo(User::class, 'user_id','user_id');
+        return $this->belongsTo(Usuario::class, 'user_id','id');
 
     }
     public function jornada(){
-        return $this->belongsTo(Jornada::class,'jornada_id','jornada_id');
+        return $this->belongsTo(Jornada::class,'jornada_id','id');
 
     }
 
