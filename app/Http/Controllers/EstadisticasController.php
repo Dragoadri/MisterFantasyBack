@@ -101,6 +101,47 @@ class EstadisticasController extends Controller
 
         return json_encode($topJugadores);
     }
+
+    public function getJugadoresTotalPuntos(Request $request, $temporada) {
+        $jornadaIds = DB::table('jornadas')
+            ->where('temporada', $temporada)
+            ->pluck('id');
+
+        // Crear subconsulta para sumar puntos y obtener el md_id
+        $subQuery = Estadistica::select('md_id', DB::raw('SUM(puntos) as total_puntos'))
+            ->whereIn('jornada_id', $jornadaIds)
+            ->groupBy('md_id')
+            ->orderBy('total_puntos', 'desc');
+
+        // Realizar la consulta principal utilizando la subconsulta
+        $topJugadores = DB::table(DB::raw("({$subQuery->toSql()}) as sub"))
+            ->mergeBindings($subQuery->getQuery()) // Importante para incluir los bindings de SQL correctamente
+            ->join('jugadores', 'jugadores.id', '=', 'sub.md_id')
+            ->join('equipor', 'equipor.id', '=', 'jugadores.team_id') // Añadir join con equipor
+            ->select('jugadores.*', 'equipor.team_shortname', 'sub.total_puntos')
+            ->orderBy('total_puntos', 'desc')// Seleccionar team_shortname
+            ->get();
+
+
+        $resultados = $topJugadores->map(function ($item, $index) {
+            return [
+                'rank' => $index + 1,
+                'jugador' => [
+                    'id' => $item->id,
+                    'name' => $item->name,
+                    'nickname' => $item->nickname,
+                    'md_name' => $item->md_name,
+                    'position' => $item->position,
+                    'position_id' => $item->position_id,
+                    'slug' => $item->slug,
+                    'team_id' => $item->team_id
+                ],
+                'puntos' => $item->total_puntos,
+                'team_shortname' => $item->team_shortname
+            ];
+        });
+        return json_encode($resultados);
+    }
 }
 
 
