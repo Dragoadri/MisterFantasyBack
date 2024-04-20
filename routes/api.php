@@ -79,4 +79,13 @@ Route::get('/mercadousuario',[MercadoUsuarioController::class, 'getAll']);
 Route::get('/mercadousuario/{id}', [MercadoUsuarioController::class, 'get']);
 Route::get('/mercadousuario/{user_id}',[MercadoUsuarioController::class, 'getMercadoByUsuario']);
 
+
+//usuarios
 Route::get('/usuarios',[usuarioController::class, 'getAll']);
+Route::get('/usuarios/{user_id}',[usuarioController::class, 'get']);
+Route::post('/usuarios',[usuarioController::class, 'insert']);
+Route::put('/usuarios/{user_id}',[usuarioController::class, 'update']);
+Route::delete('/usuarios/{user_id}',[usuarioController::class, 'delete']);
+Route::post('/usuarios/login',[usuarioController::class, 'login']);
+
+

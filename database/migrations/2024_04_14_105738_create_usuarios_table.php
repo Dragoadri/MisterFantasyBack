@@ -18,6 +18,7 @@ class CreateUsuariosTable extends Migration
                 $table->id('id');
                 $table->string('nickname');
                 $table->string('correo');
+                $table->string('password');
                 $table->string('rol');
             });
         }
