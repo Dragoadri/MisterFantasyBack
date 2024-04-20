@@ -48,7 +48,7 @@ class CreateEstadisticasTable extends Migration
          * );
          */
 
-        Schema::dropIfExists('estadisticas');
+//        Schema::dropIfExists('estadisticas');
 
         Schema::create('estadisticas', function (Blueprint $table) {
             $table->id();
