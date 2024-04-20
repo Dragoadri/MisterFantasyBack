@@ -71,7 +71,7 @@ Route::get('/estadisticas/jornada/{jornada_id}', [EstadisticasController::class,
 //Valor equipos
 Route::get('/valorequipos', [ValorEquiposController::class, 'getAll']);
 
-Route::get('/valorequipos/jornada-id/{jornada_id}', [ValorEquiposController::class, 'getAllWithUsername']);
+Route::get('/valorequipos/jornada-id/{jornada_id}', [ValorEquiposController::class, 'getWithUsernameByJornadaId']);
 
 //mercado Usuario
 Route::get('/mercadousuario',[MercadoUsuarioController::class, 'getAll']);
