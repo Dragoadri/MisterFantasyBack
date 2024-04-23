@@ -13,8 +13,8 @@ class CreateEquiporsTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('equipors')) {
-            Schema::create('equipors', function (Blueprint $table) {
+        if (!Schema::hasTable('equipor')) {
+            Schema::create('equipor', function (Blueprint $table) {
                 $table->id();
                 $table->string('team_name');
                 $table->string('team_shortname');
@@ -29,6 +29,6 @@ class CreateEquiporsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('equipors');
+        Schema::dropIfExists('equipor');
     }
 }

@@ -91,10 +91,10 @@ class EstadisticasController extends Controller
             ->where('temporada', $temporada)
             ->pluck('id');
 
-        $topJugadores = Estadistica::whereIn('estadistica.jornada_id', $jornadaIds)
-            ->join('jugadores', 'jugadores.id', '=', 'estadistica.md_id')
-            ->select('estadistica.md_id', DB::raw('SUM(estadistica.puntos) as total_puntos'), 'jugadores.name')
-            ->groupBy('estadistica.md_id', 'jugadores.name')
+        $topJugadores = Estadistica::whereIn('estadisticas.jornada_id', $jornadaIds)
+            ->join('jugadores', 'jugadores.id', '=', 'estadisticas.md_id')
+            ->select('estadisticas.md_id', DB::raw('SUM(estadisticas.puntos) as total_puntos'), 'jugadores.name')
+            ->groupBy('estadisticas.md_id', 'jugadores.name')
             ->orderBy('total_puntos', 'desc')
             ->take(10)
             ->get();

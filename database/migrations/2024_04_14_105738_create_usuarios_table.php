@@ -13,8 +13,8 @@ class CreateUsuariosTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('usuario')) {
-            Schema::create('usuario', function (Blueprint $table) {
+        if (!Schema::hasTable('usuarios')) {
+            Schema::create('usuarios', function (Blueprint $table) {
                 $table->id('id');
                 $table->string('nickname');
                 $table->string('correo');

@@ -23,7 +23,7 @@ class CreateJugadoresTable extends Migration
                 $table->integer('position_id');
                 $table->string('slug');
                 $table->unsignedBigInteger('team_id');
-                $table->foreign('team_id')->references('id')->on('equipors');
+                $table->foreign('team_id')->references('id')->on('equipor');
             });
         }
     }

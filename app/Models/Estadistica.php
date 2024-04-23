@@ -43,7 +43,7 @@ class Estadistica extends Model
      *
      * );
      */
-    protected $table = 'estadistica';
+    protected $table = 'estadisticas';
     protected $primaryKey = 'id';
     protected $fillable = [
         'md_id',

@@ -50,8 +50,8 @@ class CreatePartidosTable extends Migration
                 $table->integer('resultado_visitante');
                 $table->unsignedBigInteger('id_equipo_local');
                 $table->unsignedBigInteger('id_equipo_visitante');
-                $table->foreign('id_equipo_local')->references('id')->on('equipors');
-                $table->foreign('id_equipo_visitante')->references('id')->on('equipors');
+                $table->foreign('id_equipo_local')->references('id')->on('equipor');
+                $table->foreign('id_equipo_visitante')->references('id')->on('equipor');
                 $table->timestamps();
             });
         }

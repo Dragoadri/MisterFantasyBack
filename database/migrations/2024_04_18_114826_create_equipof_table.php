@@ -15,7 +15,7 @@ class CreateEquipoFTable extends Migration
     {
         if (!Schema::hasTable('equipof')) {
             Schema::create('equipof', function (Blueprint $table) {
-                $table->id();
+                $table->id('id');
                 $table->timestamps();
                 $table->unsignedBigInteger('md_id');
                 $table->unsignedBigInteger('user_id');

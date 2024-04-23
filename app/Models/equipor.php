@@ -10,7 +10,7 @@ class equipor extends Model
     use HasFactory;
     protected $table = "equipor";
     // Especificamos la clave primaria si no es 'id'.
-    protected $primaryKey = 'team_id';
+    protected $primaryKey = 'id';
     // Laravel asume que cada tabla tiene timestamps (created_at y updated_at),
     // si no es así, deshabilitamos esta funcionalidad
     public $timestamps = false;
