@@ -43,19 +43,28 @@ class MercadoController extends Controller
 
     public function getTopPrices(Request $request)
     {
-        // Buscamos fecha mas reciente en registros
         $latestDate = Mercado::max('date');
-        // Obtenemos top 10 de jugadores con el mayor 'value' en esa fecha.
+
         $topPlayers = Mercado::where('date', $latestDate)
-            ->orderBy('value', 'desc')
-            ->take(10)
-            ->with(['jugador' => function($query) {
-                $query->select();
-            }])
-            ->get();
+        ->join('jugadores', 'mercado.md_player_id', '=', 'jugadores.id')
+        ->leftJoin('equipor', 'jugadores.team_id', '=', 'equipor.id')
+        ->select('mercado.md_player_id', 'mercado.value', 'jugadores.position', 'jugadores.name', 'equipor.team_name')
+        ->orderBy('value', 'desc')
+        ->get();
 
+        $resultados = $topPlayers->map(function ($item, $index) {
+            return [
+                'id' => $index + 1,
+                'md_player_id' => $item->md_player_id,
+                'jugador' => [
+                    'name' => $item->name,
+                    'position' => $item->position,
+                ],
+                'team_name' => $item->team_name,
+                'value' => $item->value
+            ];
+        });
         
-
-        return json_encode($topPlayers);
+        return json_encode($resultados);
     }
 }
