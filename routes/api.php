@@ -48,7 +48,7 @@ Route::get('/jornadas/{jor_id}', [JornadaController::class, 'get']);
 
 //Route::get('/equipoF', [EquipoFController::class, 'getAll']);
 Route::get('/equipoF/{equi_id}', [EquipoFController::class, 'get']);
-
+Route::get('/equipoF/{user_id}',[EquipoFController::class, 'getEquipoByUsuario']);
 Route::get('/equipor', [equiporController::class, 'getAll']);
 
 //PARTIDOS
@@ -79,7 +79,7 @@ Route::get('/valorequipos/jornada-id/{jornada_id}', [ValorEquiposController::cla
 Route::get('/mercadousuario',[MercadoUsuarioController::class, 'getAll']);
 
 Route::get('/mercadousuario/{id}', [MercadoUsuarioController::class, 'get']);
-Route::get('/mercadousuario/{user_id}',[MercadoUsuarioController::class, 'getMercadoByUsuario']);
+Route::get('/mercadousuario/byuser/{user_id}',[MercadoUsuarioController::class, 'getMercadoByUsuario']);
 
 
 //usuarios
