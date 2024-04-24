@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EstadisticasController;
 use App\Http\Controllers\JugadoresController;
 use App\Http\Controllers\MercadoController;
@@ -90,5 +91,8 @@ Route::post('/usuarios',[usuarioController::class, 'insert']);
 Route::put('/usuarios/{user_id}',[usuarioController::class, 'update']);
 Route::delete('/usuarios/{user_id}',[usuarioController::class, 'delete']);
 Route::post('/usuarios/login',[usuarioController::class, 'login']);
+
+//Inicio de sesion
+Route::post('auth/login', [AuthController::class, 'login']);
 
 

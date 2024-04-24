@@ -4,8 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Usuario extends Model
+class Usuario extends Authenticatable implements JWTSubject
 {
 
     /**
@@ -22,6 +24,10 @@ class Usuario extends Model
 
 
     use HasFactory;
+    protected $hidden = [
+        'password',
+    ];
+
     protected $table = 'usuarios';
     // Especificamos la clave primaria si no es 'id'.
 //    protected $primaryKey = 'user_id';
@@ -92,4 +98,13 @@ class Usuario extends Model
         return -1;
     }
 
+    public function getJWTIdentifier()
+    {
+       return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
 }
