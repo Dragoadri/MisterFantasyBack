@@ -48,7 +48,7 @@ Route::get('/jornadas/{jor_id}', [JornadaController::class, 'get']);
 
 //Route::get('/equipoF', [EquipoFController::class, 'getAll']);
 Route::get('/equipoF/{equi_id}', [EquipoFController::class, 'get']);
-Route::get('/equipoF/{user_id}',[EquipoFController::class, 'getEquipoByUsuario']);
+Route::get('/equipoF/byuser/{user_id}',[EquipoFController::class, 'getEquipoByUsuario']);
 Route::get('/equipor', [equiporController::class, 'getAll']);
 
 //PARTIDOS
@@ -72,6 +72,7 @@ Route::get('/estadisticas/jornada/{jornada_id}', [EstadisticasController::class,
 
 //Valor equipos
 Route::get('/valorequipos', [ValorEquiposController::class, 'getAll']);
+Route::get('/valorequipos/{id}', [ValorEquiposController::class, 'get']);
 
 Route::get('/valorequipos/jornada-id/{jornada_id}', [ValorEquiposController::class, 'getWithUsernameByJornadaId']);
 
