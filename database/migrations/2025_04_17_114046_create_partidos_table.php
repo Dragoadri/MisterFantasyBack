@@ -45,9 +45,9 @@ class CreatePartidosTable extends Migration
                 $table->integer('jornada');
                 $table->string('equipo_local');
                 $table->string('equipo_visitante');
-                $table->string('resultado');
-                $table->integer('resultado_local');
-                $table->integer('resultado_visitante');
+                $table->string('resultado')->nullable();
+                $table->integer('resultado_local')->nullable();
+                $table->integer('resultado_visitante')->nullable();
                 $table->unsignedBigInteger('id_equipo_local');
                 $table->unsignedBigInteger('id_equipo_visitante');
                 $table->foreign('id_equipo_local')->references('id')->on('equipor');

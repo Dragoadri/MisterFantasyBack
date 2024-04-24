@@ -18,7 +18,7 @@ class CreateMercadousuariosTable extends Migration
                 $table->id();
                 $table->timestamps();
                 $table->unsignedBigInteger('md_id');
-                $table->year('fecha');
+                $table->date('fecha');
                 $table->unsignedBigInteger('user_id');
                 $table->foreign('md_id')->references('id')->on('jugadores');
                 $table->foreign('user_id')->references('id')->on('usuarios');
