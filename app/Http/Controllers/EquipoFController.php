@@ -20,7 +20,7 @@ class EquipoFController extends Controller
     //
     public function getEquipoByUsuario(Request $request, $user_id)
     {
-        $equipo = EquipoF::where('user_id', $user_id)->get();
+        $equipo = EquipoF::where('user_id', $user_id)->with('jugador')->get();
         return json_encode($equipo);
     }
 }

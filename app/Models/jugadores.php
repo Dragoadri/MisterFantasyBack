@@ -12,7 +12,7 @@ class jugadores extends Model
     // Especificamos el nombre de la tabla si no sigue la convención de nombres de Laravel.
     protected $table = 'jugadores';
     // Especificamos la clave primaria si no es 'id'.
-//    protected $primaryKey = 'md_id';
+    //protected $primaryKey = 'id';
     // Laravel asume que cada tabla tiene timestamps (created_at y updated_at),
     // si no es así, deshabilitamos esta funcionalidad
     public $timestamps = false;
@@ -33,4 +33,11 @@ class jugadores extends Model
     {
         return $this->belongsTo(equipor::class, 'team_id', 'id');
     }
+    /*
+    public function teamf()
+    {
+        return $this->belongsTo(EquipoF::class,'id','md_id');
+    }
+    */
+    
 }

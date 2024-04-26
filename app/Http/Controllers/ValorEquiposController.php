@@ -32,4 +32,9 @@ class ValorEquiposController extends Controller
         $valorequipos = valorequipos::where('id', $id)->get();
         return json_encode($valorequipos, JSON_UNESCAPED_UNICODE);
     }
+
+    public function getLastValueByUser(Request $request, $user_id){
+        $valorequipos= valorequipos::where('user_id',$user_id)->with('Usuario')->get()->last();
+        return json_encode($valorequipos);
+    }
 }
