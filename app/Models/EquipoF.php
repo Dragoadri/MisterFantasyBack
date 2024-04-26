@@ -22,7 +22,8 @@ class EquipoF extends Model
     public function jugador()
     {
         //Si es hasMany, se intercambia el orden de los nombres de las variables, osea ('id','md_id')
-        return $this->belongsTo(jugadores::class,'md_id','id');
+        //return $this->belongsTo(jugadores::class,'md_id','id');
+        return $this->hasMany(jugadores::class, "id",'md_id');
     }
     public function usuario()
     {

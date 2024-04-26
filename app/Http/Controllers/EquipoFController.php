@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\EquipoF;
+use App\Models\Jornada;
+use App\Models\jugadores;
 use Illuminate\Http\Request;
 
 class EquipoFController extends Controller
@@ -20,7 +22,11 @@ class EquipoFController extends Controller
     //
     public function getEquipoByUsuario(Request $request, $user_id)
     {
-        $equipo = EquipoF::where('user_id', $user_id)->with('jugador')->get();
-        return json_encode($equipo);
+        //$jornada = Jornada::get()->last();
+        $jornada = Equipof::get()->max('jornada_id');
+        $ids = EquipoF::where([['user_id', $user_id], ["jornada_id", $jornada]])->get()->pluck("md_id");
+        $jugadores = jugadores::whereIn("id", $ids)->get();
+        //$equipo = EquipoF::where('user_id', $user_id)->with('jugador')->get();
+        return json_encode($jugadores, JSON_UNESCAPED_UNICODE);
     }
 }
