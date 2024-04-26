@@ -42,8 +42,6 @@ Route::get('/mercado/{md_id}', [MercadoController::class, 'get']);
 
 Route::get('/mercadotop', [MercadoController::class, 'getTopValues']);
 
-Route::get('/compratop', [MercadoController::class, 'getTopPrices']);
-
 Route::get('/jornadas/temporada/{temporada}', [JornadaController::class, 'getByTemporada']);
 Route::get('/jornadas/{jor_id}', [JornadaController::class, 'get']);
 
@@ -82,6 +80,8 @@ Route::get('/mercadousuario',[MercadoUsuarioController::class, 'getAll']);
 
 Route::get('/mercadousuario/{id}', [MercadoUsuarioController::class, 'get']);
 Route::get('/mercadousuario/byuser/{user_id}',[MercadoUsuarioController::class, 'getMercadoByUsuario']);
+
+Route::get('/compratop', [MercadoUsuarioController::class, 'getTopPrices']);
 
 
 //usuarios

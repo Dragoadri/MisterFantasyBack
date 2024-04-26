@@ -9,7 +9,7 @@ class mercadousuario extends Model
 {
     use HasFactory;
 
-    protected $table = 'mercadousuario';
+    protected $table = 'mercadousuarios';
     protected $primaryKey = 'id';
     public $timestamps = false;
     protected $fillable = [
