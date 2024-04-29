@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -44,6 +45,12 @@ class Usuario extends Authenticatable implements JWTSubject
 
     ];
 
+
+
+
+
+
+
     public function getUsuario($id){
         return $this->where('id', $id)->first();
     }
@@ -60,43 +67,7 @@ class Usuario extends Authenticatable implements JWTSubject
         return $this->all();
     }
 
-    public function insertUsuario($username, $correo, $password, $rol){
-        $usuario = new Usuario();
-        $usuario->username = $username;
-        $usuario->correo = $correo;
-        $usuario->password = $password;
-        $usuario->rol = $rol;
-        $usuario->save();
-    }
 
-    public function updateUsuario($id, $username, $correo, $password, $rol){
-        $usuario = $this->where('id', $id)->first();
-        $usuario->username = $username;
-        $usuario->correo = $correo;
-        $usuario->password = $password;
-        $usuario->rol = $rol;
-        $usuario->save();
-    }
-
-    public function deleteUsuario($id){
-        $usuario = $this->where('id', $id)->first();
-        $usuario->delete();
-    }
-
-    public function getRol($id){
-        $usuario = $this->where('id', $id)->first();
-        return $usuario->rol;
-    }
-
-    public function login($username, $password){
-        $usuario = $this->where('username', $username)->first();
-        if($usuario != null){
-            if($usuario->password == $password){
-                return $usuario->id;
-            }
-        }
-        return -1;
-    }
 
     public function getJWTIdentifier()
     {
