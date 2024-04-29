@@ -49,6 +49,9 @@ Route::get('/jornadas/{jor_id}', [JornadaController::class, 'get']);
 Route::get('/equipoF/{equi_id}', [EquipoFController::class, 'get']);
 Route::get('/equipof',[EquipoFController::class, 'getAll']);
 Route::get('/equipoF/byuser/{user_id}',[EquipoFController::class, 'getEquipoByUsuario']);
+Route::get('/ventaleast', [EquipoFController::class, 'getLeastPoints']);
+
+
 Route::get('/equipor', [equiporController::class, 'getAll']);
 
 //PARTIDOS
@@ -96,5 +99,3 @@ Route::post('/usuarios/login',[usuarioController::class, 'login']);
 
 //Inicio de sesion
 Route::post('auth/login', [AuthController::class, 'login']);
-
-

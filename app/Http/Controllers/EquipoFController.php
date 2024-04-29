@@ -6,6 +6,7 @@ use App\Models\EquipoF;
 use App\Models\Jornada;
 use App\Models\jugadores;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EquipoFController extends Controller
 {
@@ -28,5 +29,19 @@ class EquipoFController extends Controller
         $jugadores = jugadores::whereIn("id", $ids)->get();
         //$equipo = EquipoF::where('user_id', $user_id)->with('jugador')->get();
         return json_encode($jugadores, JSON_UNESCAPED_UNICODE);
+    }
+
+    public function getLeastPoints(Request $request)
+    {
+        $resultados = DB::table('equipof')
+        ->select('equipof.md_id', 'jugadores.position', 'jugadores.name', 'equipor.team_name', DB::raw('SUM(estadisticas.puntos) AS puntos'))
+        ->join('jugadores', 'equipof.md_id', '=', 'jugadores.id')
+        ->leftJoin('estadisticas', 'jugadores.id', '=', 'estadisticas.md_id')
+        ->leftJoin('equipor', 'jugadores.team_id', '=', 'equipor.id')
+        ->groupBy('equipof.md_id', 'jugadores.name', 'jugadores.position', 'equipor.team_name')
+        ->orderBy('puntos', 'asc')
+        ->get();
+        
+        return json_encode($resultados);
     }
 }

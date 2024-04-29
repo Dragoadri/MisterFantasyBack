@@ -25,6 +25,7 @@ class MercadoUsuarioController extends Controller
 
     public function getTopPrices(Request $request)
     {
+        
         // Obtener la fecha más reciente
         $latestDate = mercadousuario::max('fecha');
 
