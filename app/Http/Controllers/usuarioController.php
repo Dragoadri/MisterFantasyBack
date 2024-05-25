@@ -19,9 +19,9 @@ class usuarioController extends Controller
 
     public function insert(Request $request){
         $usuario = new usuario();
-        $usuario->username = $request->username;
+        $usuario->nickname = $request->nickname;
         $usuario->correo = $request->correo;
-        $usuario->password = $request->password;
+        $usuario->password = Hash::make($request->password);
         $usuario->rol = $request->rol;
         $usuario->save();
         return json_encode($usuario);
@@ -29,7 +29,7 @@ class usuarioController extends Controller
 
     public function update(Request $request, $usuario_id){
         $usuario = usuario::find($usuario_id);
-        $usuario->username = $request->username;
+        $usuario->nickname = $request->nickname;
         $usuario->correo = $request->correo;
         $usuario->password = $request->password;
         $usuario->rol = $request->rol;
@@ -44,7 +44,7 @@ class usuarioController extends Controller
     }
 
     public function login(Request $request){
-        $usuario = usuario::where('username', $request->username)->first();
+        $usuario = usuario::where('nickname', $request->nickname)->first();
         if($usuario != null){
             if($usuario->password == $request->password){
                 return json_encode($usuario);

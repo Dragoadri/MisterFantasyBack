@@ -38,18 +38,12 @@ class Usuario extends Authenticatable implements JWTSubject
 
     // Especificamos los campos a asignar
     protected $fillable = [
-           'username',
+           'nickname',
             'correo',
-            'rol',
-            'password'
+            'password',
+            'rol'
 
     ];
-
-
-
-
-
-
 
     public function getUsuario($id){
         return $this->where('id', $id)->first();

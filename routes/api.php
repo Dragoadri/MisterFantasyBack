@@ -99,3 +99,4 @@ Route::post('/usuarios/login',[usuarioController::class, 'login']);
 
 //Inicio de sesion
 Route::post('auth/login', [AuthController::class, 'login']);
+Route::post('auth/register', [AuthController::class, 'register']);
