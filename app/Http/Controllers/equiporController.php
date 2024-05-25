@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\equipor;
+use Illuminate\Support\Facades\File;
 
 class equiporController extends Controller
 {
@@ -16,4 +17,5 @@ class equiporController extends Controller
         $equipor = equipor::find($equipor_id);
         return json_encode($equipor);
     }
+
 }

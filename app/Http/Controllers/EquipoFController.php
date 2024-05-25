@@ -46,12 +46,12 @@ class EquipoFController extends Controller
     public function getLeastPoints(Request $request)
     {
         $leastPlayers = DB::table('equipof')
-        ->select('equipof.md_id', 'jugadores.position', 'jugadores.name', 'equipor.team_name', DB::raw('SUM(estadisticas.puntos) AS puntos'))
+        ->select('equipof.md_id', 'jugadores.position', 'jugadores.name', 'equipor.team_shortname', DB::raw('SUM(estadisticas.puntos) AS puntos'))
         ->join('jugadores', 'equipof.md_id', '=', 'jugadores.id')
         ->leftJoin('estadisticas', 'jugadores.id', '=', 'estadisticas.md_id')
         ->leftJoin('equipor', 'jugadores.team_id', '=', 'equipor.id')
         ->where('equipof.md_id', '<>', 999999999)
-        ->groupBy('equipof.md_id', 'jugadores.name', 'jugadores.position', 'equipor.team_name')
+        ->groupBy('equipof.md_id', 'jugadores.name', 'jugadores.position', 'equipor.team_shortname')
         ->orderBy('puntos', 'asc')
         ->get();
 
@@ -63,7 +63,7 @@ class EquipoFController extends Controller
                     'name' => $item->name,
                     'position' => $item->position,
                 ],
-                'team_name' => $item->team_name,
+                'team_shortname' => $item->team_shortname,
                 'puntos' => $item->puntos
             ];
         });

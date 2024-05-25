@@ -25,7 +25,7 @@ class MercadoUsuarioController extends Controller
 
     public function getTopPrices(Request $request)
     {
-        
+
         // Obtener la fecha más reciente
         $latestDate = mercadousuario::max('fecha');
 
@@ -37,7 +37,7 @@ class MercadoUsuarioController extends Controller
                     ->whereRaw('mercado.value = (select max(value) from mercado where mercado.md_player_id = jugadores.id)');
             })
             ->leftJoin('equipor', 'jugadores.team_id', '=', 'equipor.id')
-            ->select('mercadousuarios.md_id', 'mercado.value', 'jugadores.position', 'jugadores.name', 'equipor.team_name')
+            ->select('mercadousuarios.md_id', 'mercado.value', 'jugadores.position', 'jugadores.name', 'equipor.team_shortname')
             ->orderBy('mercado.value', 'desc')
             ->get();
 
@@ -49,7 +49,7 @@ class MercadoUsuarioController extends Controller
                     'name' => $item->name,
                     'position' => $item->position,
                 ],
-                'team_name' => $item->team_name,
+                'team_shortname' => $item->team_shortname,
                 'value' => $item->value
             ];
         });
