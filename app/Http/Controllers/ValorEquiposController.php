@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Usuario;
 use App\Models\valorequipos;
 use Illuminate\Http\Request;
 
@@ -37,4 +38,11 @@ class ValorEquiposController extends Controller
         $valorequipos= valorequipos::where('user_id',$user_id)->with('Usuario')->get()->last();
         return json_encode($valorequipos);
     }
+
+    public function getLastValueByCorreo(Request $request, $correo){
+        $id_usuario = Usuario::where('correo', $correo)->pluck('id');
+        $valorequipos= valorequipos::where('user_id', $id_usuario)->with('Usuario')->get()->last();
+        return json_encode($valorequipos);
+    }
+
 }

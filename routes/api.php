@@ -79,6 +79,7 @@ Route::get('/valorequipos/{id}', [ValorEquiposController::class, 'get']);
 Route::get('/valorequipos/getlast/{user_id}', [ValorEquiposController::class, 'getLastValueByUser']);
 
 Route::get('/valorequipos/jornada-id/{jornada_id}', [ValorEquiposController::class, 'getWithUsernameByJornadaId']);
+Route::get('/valorequipos/last-by-email/{email}', [ValorEquiposController::class, 'getLastValueByCorreo']);
 
 //mercado Usuario
 Route::get('/mercadousuario',[MercadoUsuarioController::class, 'getAll']);
@@ -100,3 +101,6 @@ Route::post('/usuarios/login',[usuarioController::class, 'login']);
 //Inicio de sesion
 Route::post('auth/login', [AuthController::class, 'login']);
 Route::post('auth/register', [AuthController::class, 'register']);
+
+//Actualizacion de email
+Route::middleware('auth:api')->put('/user/update-email', [AuthController::class, 'updateCorreo']);
