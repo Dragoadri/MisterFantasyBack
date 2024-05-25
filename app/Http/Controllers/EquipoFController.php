@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\EquipoF;
 use App\Models\Jornada;
 use App\Models\jugadores;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -26,6 +27,17 @@ class EquipoFController extends Controller
         //$jornada = Jornada::get()->last();
         $jornada = Equipof::get()->max('jornada_id');
         $ids = EquipoF::where([['user_id', $user_id], ["jornada_id", $jornada]])->get()->pluck("md_id");
+        $jugadores = jugadores::whereIn("id", $ids)->get();
+        //$equipo = EquipoF::where('user_id', $user_id)->with('jugador')->get();
+        return json_encode($jugadores, JSON_UNESCAPED_UNICODE);
+    }
+
+    public function getEquipoByCorreo(Request $request, $correo)
+    {
+        //$jornada = Jornada::get()->last();
+        $id_usuario = Usuario::where('correo', $correo)->pluck('id');
+        $jornada = Equipof::get()->max('jornada_id');
+        $ids = EquipoF::where([['user_id', $id_usuario], ["jornada_id", $jornada]])->get()->pluck("md_id");
         $jugadores = jugadores::whereIn("id", $ids)->get();
         //$equipo = EquipoF::where('user_id', $user_id)->with('jugador')->get();
         return json_encode($jugadores, JSON_UNESCAPED_UNICODE);
@@ -55,7 +67,7 @@ class EquipoFController extends Controller
                 'puntos' => $item->puntos
             ];
         });
-        
+
         return json_encode($resultados);
     }
 }

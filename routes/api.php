@@ -78,8 +78,6 @@ Route::get('/valorequipos', [ValorEquiposController::class, 'getAll']);
 Route::get('/valorequipos/{id}', [ValorEquiposController::class, 'get']);
 Route::get('/valorequipos/getlast/{user_id}', [ValorEquiposController::class, 'getLastValueByUser']);
 
-Route::get('/valorequipos/jornada-id/{jornada_id}', [ValorEquiposController::class, 'getWithUsernameByJornadaId']);
-Route::get('/valorequipos/last-by-email/{email}', [ValorEquiposController::class, 'getLastValueByCorreo']);
 
 //mercado Usuario
 Route::get('/mercadousuario',[MercadoUsuarioController::class, 'getAll']);
@@ -87,15 +85,14 @@ Route::get('/mercadousuario',[MercadoUsuarioController::class, 'getAll']);
 Route::get('/mercadousuario/{id}', [MercadoUsuarioController::class, 'get']);
 Route::get('/mercadousuario/byuser/{user_id}',[MercadoUsuarioController::class, 'getMercadoByUsuario']);
 
-Route::get('/compratop', [MercadoUsuarioController::class, 'getTopPrices']);
+//Route::get('/compratop', [MercadoUsuarioController::class, 'getTopPrices']);
 
 
 //usuarios
-Route::get('/usuarios',[usuarioController::class, 'getAll']);
+//Route::get('/usuarios',[usuarioController::class, 'getAll']);
 Route::get('/usuarios/{user_id}',[usuarioController::class, 'get']);
 Route::post('/usuarios',[usuarioController::class, 'insert']);
 Route::put('/usuarios/{user_id}',[usuarioController::class, 'update']);
-Route::delete('/usuarios/{user_id}',[usuarioController::class, 'delete']);
 Route::post('/usuarios/login',[usuarioController::class, 'login']);
 
 //Inicio de sesion
@@ -103,4 +100,14 @@ Route::post('auth/login', [AuthController::class, 'login']);
 Route::post('auth/register', [AuthController::class, 'register']);
 
 //Actualizacion de email
-Route::middleware('auth:api')->put('/user/update-email', [AuthController::class, 'updateCorreo']);
+
+
+Route::middleware('auth:api')->group(function () {
+    Route::put('/user/update-email', [AuthController::class, 'updateCorreo']);
+    Route::get('/equipoF/by-correo/{correo}',[EquipoFController::class, 'getEquipoByCorreo']);
+    Route::get('/compratop', [MercadoUsuarioController::class, 'getTopPrices']);
+    Route::get('/usuarios',[usuarioController::class, 'getAll']);
+    Route::get('/valorequipos/jornada-id/{jornada_id}', [ValorEquiposController::class, 'getWithUsernameByJornadaId']);
+    Route::get('/valorequipos/last-by-email/{email}', [ValorEquiposController::class, 'getLastValueByCorreo']);
+    Route::delete('/usuarios/{usuario_id}', [usuarioController::class, 'delete']);
+});

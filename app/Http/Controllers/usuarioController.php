@@ -38,9 +38,13 @@ class usuarioController extends Controller
     }
 
     public function delete(Request $request, $usuario_id){
-        $usuario = usuario::find($usuario_id);
-        $usuario->delete();
-        return json_encode($usuario);
+        $usuario = Usuario::find($usuario_id);
+        if ($usuario) {
+            $usuario->delete();
+            return response()->json(['message' => 'Usuario eliminado correctamente']);
+        } else {
+            return response()->json(['message' => 'Usuario no encontrado'], 404);
+        }
     }
 
     public function login(Request $request){
