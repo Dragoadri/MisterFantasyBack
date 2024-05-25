@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\BienvenidaEmail;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -34,6 +36,9 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
             'rol' => 'user' //Rol de admin se da en bbdd, automaticamente se registran solo user
         ]);
+
+        Mail::to($user->correo)->send(new BienvenidaEmail($user, $request->password));
+
         $token = auth()->login($user);
 
         return $this->respuestaToken($token);
