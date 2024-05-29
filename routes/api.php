@@ -92,7 +92,6 @@ Route::get('/mercadousuario/byuser/{user_id}',[MercadoUsuarioController::class, 
 //Route::get('/usuarios',[usuarioController::class, 'getAll']);
 Route::get('/usuarios/{user_id}',[usuarioController::class, 'get']);
 Route::post('/usuarios',[usuarioController::class, 'insert']);
-Route::put('/usuarios/{user_id}',[usuarioController::class, 'update']);
 Route::post('/usuarios/login',[usuarioController::class, 'login']);
 
 //Inicio de sesion
@@ -110,4 +109,5 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/valorequipos/jornada-id/{jornada_id}', [ValorEquiposController::class, 'getWithUsernameByJornadaId']);
     Route::get('/valorequipos/last-by-email/{email}', [ValorEquiposController::class, 'getLastValueByCorreo']);
     Route::delete('/usuarios/{usuario_id}', [usuarioController::class, 'delete']);
+    Route::put('/usuarios/{user_id}', [UsuarioController::class, 'update']);
 });

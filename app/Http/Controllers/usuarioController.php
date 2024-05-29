@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class usuarioController extends Controller
 {
@@ -28,13 +29,26 @@ class usuarioController extends Controller
     }
 
     public function update(Request $request, $usuario_id){
-        $usuario = usuario::find($usuario_id);
-        $usuario->nickname = $request->nickname;
-        $usuario->correo = $request->correo;
-        $usuario->password = $request->password;
-        $usuario->rol = $request->rol;
+        $usuario = Usuario::find($usuario_id);
+        if (!$usuario) {
+            return response()->json(['message' => 'Usuario no encontrado'], 404);
+        }
+
+        if ($request->has('nickname')) {
+            $usuario->nickname = $request->nickname;
+        }
+        if ($request->has('correo')) {
+            $usuario->correo = $request->correo;
+        }
+        if ($request->has('password')) {
+            $usuario->password = Hash::make($request->password);
+        }
+        if ($request->has('rol')) {
+            $usuario->rol = $request->rol;
+        }
+
         $usuario->save();
-        return json_encode($usuario);
+        return response()->json(['message' => 'Usuario actualizado correctamente']);
     }
 
     public function delete(Request $request, $usuario_id){
